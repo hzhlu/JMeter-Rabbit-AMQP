@@ -2,7 +2,7 @@
 <project name="JMeter-AMQP" default="package" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
   <description>
     To build JMeter-AMQP from source:
-      ant 
+      ant
 
     To rebuild:
       ant clean package
@@ -32,7 +32,7 @@
   <property name="ivy.install.version" value="2.3.0"/>
   <property name="ivy.jar.dir" value="${basedir}/ivy"/>
   <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
-  
+
 
   <target name="compile"  depends="resolve-dependencies" description="Compile.">
       <echo>Compiling</echo>
@@ -53,16 +53,16 @@
   <target name="resolve-dependencies"  depends="install-ivy" description="Resolving Dependencies.">
       <echo>Resolving properties</echo>
       <ivy:resolve/>
-      <ivy:cachepath pathid="lib.path.id" conf="build"/> 
+      <ivy:cachepath pathid="lib.path.id" conf="build"/>
   </target>
-  
+
   <target name="install-ivy" depends="download-ivy" description="Installing Ivy">
     <path id="ivy.lib.path">
         <fileset dir="${ivy.jar.dir}" includes="*.jar"/>
     </path>
-    <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>     
+    <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
   </target>
-  
+
   <target name="download-ivy" unless="skip.ivy.download" description="Download Ivy">
       <mkdir dir="${ivy.jar.dir}"/>
       <get src="http://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true"/>
